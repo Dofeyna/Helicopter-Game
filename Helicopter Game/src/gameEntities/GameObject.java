@@ -1,6 +1,5 @@
 package gameEntities;
 
-
 public class GameObject {
 
 	private String id;
