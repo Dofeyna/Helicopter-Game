@@ -2,6 +2,8 @@ package gameEntities;
 
 import java.applet.*;
 
+import javax.swing.ImageIcon;
+
 public class PowerUp extends GameObject{
 	
 	private int distance;
@@ -40,5 +42,11 @@ public class PowerUp extends GameObject{
 	public void draw()
 	{
 		
+	}
+
+	@Override
+	public ImageIcon getImageIcon() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

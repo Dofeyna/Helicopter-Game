@@ -2,8 +2,9 @@ package gameEntities;
 
 import  javax.swing.*;
 import java.applet.*;
+import java.awt.Graphics;
 
-public class Helicopter {
+public class Helicopter extends GameObject {
 	
 	private ImageIcon image;
 	private AudioClip audio;
@@ -11,12 +12,12 @@ public class Helicopter {
 	private AudioClip movementAudio;
 	private String feature;
 	
-	public Helicopter()
-	{
-		
+	public Helicopter(String id, int posX, int posY){
+		super(id, posX, posY);
+		image = new ImageIcon("rsc/helicopter.GIF");
 	}
 	
-	public ImageIcon getImage()
+	public ImageIcon getImageIcon()
 	{
 		return image;
 	}
@@ -76,8 +77,7 @@ public class Helicopter {
 		
 	}
 	
-	public void action( String key)
-	{
+	public void action( String key){
 		
 	}
 	
@@ -86,8 +86,6 @@ public class Helicopter {
 		
 	}
 	
-	public void draw()
-	{
-		
+	public void draw(){
 	}
 }

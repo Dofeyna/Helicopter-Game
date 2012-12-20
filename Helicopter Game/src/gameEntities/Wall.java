@@ -47,5 +47,11 @@ public class Wall extends GameObject {
 	{
 		
 	}
+
+	@Override
+	public ImageIcon getImageIcon() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
