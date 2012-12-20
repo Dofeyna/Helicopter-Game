@@ -1,21 +1,15 @@
 package gameEntities;
 
 import java.applet.*;
-import javax.swing.*;
 
-public class Wall extends GameObject {
+public class PowerUp extends GameObject{
 	
-	private ImageIcon image;
+	private int distance;
 	private AudioClip audio;
-
-	public Wall()
-	{	
-		
-	}
-		
-	public ImageIcon getImage()
+	
+	public int getDistance()
 	{
-		return image;
+		return distance;
 	}
 	
 	public AudioClip getAudio()
@@ -23,12 +17,12 @@ public class Wall extends GameObject {
 		return audio;
 	}
 	
-	public void setImage( ImageIcon image)
+	public void setDistance( int distance)
 	{
-		this.image = image;
+		this.distance = distance;
 	}
 	
-	public void setAudio(AudioClip audio)
+	public void setAudio( AudioClip audio)
 	{
 		this.audio = audio;
 	}
@@ -47,5 +41,4 @@ public class Wall extends GameObject {
 	{
 		
 	}
-	
 }

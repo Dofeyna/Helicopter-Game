@@ -10,7 +10,7 @@ public class Diamond extends GameObject {
 	AudioClip audio;
 	
 	public Diamond(){	
-		
+	
 	}
 	
 }
