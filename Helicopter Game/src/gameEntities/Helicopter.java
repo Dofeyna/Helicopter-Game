@@ -2,7 +2,6 @@ package gameEntities;
 
 import  javax.swing.*;
 import java.applet.*;
-import java.awt.Graphics;
 
 public class Helicopter extends GameObject {
 	

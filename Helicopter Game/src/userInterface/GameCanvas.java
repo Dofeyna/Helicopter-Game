@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 
 
 public class GameCanvas extends JPanel implements KeyListener, MouseListener {
-	ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
-	ArrayList<Integer> posX = new ArrayList<Integer>();
-	ArrayList<Integer> posY = new ArrayList<Integer>();
-	ImageIcon background = new ImageIcon ("rsc/Wall Pattern.JPG");
-	int log;
+	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
+	private ArrayList<Integer> posX = new ArrayList<Integer>();
+	private ArrayList<Integer> posY = new ArrayList<Integer>();
+	private ImageIcon background = new ImageIcon ("rsc/Wall Pattern.JPG");
+	private int log;
 	public GameCanvas() {
 		setFocusable(true);
 		addKeyListener(this);
@@ -54,7 +54,6 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		
 		System.out.println("KEY");
 		System.out.println(keyInputReturn(arg0));
 	}

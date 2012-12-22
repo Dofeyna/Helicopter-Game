@@ -8,9 +8,9 @@ public class Wall extends GameObject {
 	private ImageIcon image;
 	private AudioClip audio;
 
-	public Wall()
-	{	
-		
+	public Wall( String id, int posX, int posY){	
+		super(id, posX, posY);
+		image = new ImageIcon("rsc/wall.PNG");
 	}
 		
 	public ImageIcon getImage()
@@ -48,10 +48,8 @@ public class Wall extends GameObject {
 		
 	}
 
-	@Override
 	public ImageIcon getImageIcon() {
-		// TODO Auto-generated method stub
-		return null;
+		return image;
 	}
 	
 }

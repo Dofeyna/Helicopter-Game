@@ -5,10 +5,11 @@ import javax.swing.*;
 public class RandomMapManager {
 	
 	private ImageIcon backgroundImage;
-	
-	public RandomMapManager()
-	{
-		
+	private int wallCounter;
+	private final int MAXHEIGHT = 500;
+	private final int MINHEIGHT = 140;
+	public RandomMapManager(){
+		wallCounter = 0;
 	}
 	
 	public ImageIcon getBackgroundImage()
@@ -20,15 +21,15 @@ public class RandomMapManager {
 	{
 		this.backgroundImage = backgroundImage;
 	}
-	
-	public void createNewMap()
-	{
-		
+	public Wall createRandomWall(){
+		wallCounter++;
+		String s = ""+wallCounter;
+		Wall w = new Wall (s, 750, randomYGenerator());
+		return w;
 	}
-	
-	public void updateMap()
-	{
-		
+	private int randomYGenerator(){
+		int randomInt = MINHEIGHT + (int)(Math.random()*MAXHEIGHT);
+		return randomInt;
 	}
 	
 
