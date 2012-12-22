@@ -17,11 +17,13 @@ public class GameEngine {
 	boolean init = true;
 	private Helicopter helicopter;
 	private RandomMapManager randomMapManager;
+	private CollisionManager collisionManager;
 	Wall wall1;
 	ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	final int ACCELERATION=5;
 	GameCanvas canvas;
 	private double randomCaller;
+	private boolean gameLoop = true;
 	
 	public static void main (String [] args){
 		GameEngine engine = new GameEngine();
@@ -34,6 +36,7 @@ public class GameEngine {
 	}
 	public void initializition(){
 		if(init){
+			collisionManager = new CollisionManager();
 			canvas = new GameCanvas();
 			randomMapManager = new RandomMapManager();
 			helicopter = new Helicopter("bir", HELICOPTERX, HELICOPTERY);
@@ -52,10 +55,13 @@ public class GameEngine {
 	}
 	public void play(){
 		long speed = System.currentTimeMillis();
-		while(true){
+		while(gameLoop){
 			if(speed < System.currentTimeMillis()-10){
 				update();
 				speed = System.currentTimeMillis();
+			}
+			if( collisionManager.checkCollision(objects) == "Wall"){
+				gameLoop = false;
 			}
 		}
 	}
@@ -68,14 +74,14 @@ public class GameEngine {
 			canvas.addImage(objects.get(objects.size() - 1).getImageIcon(), 
 					objects.get(objects.size() - 1).getPosX(),objects.get(objects.size() - 1).getPosY());
 		}
-			if(canvas.getLog() == 1){
+		if(canvas.getLog() == 1){
 			objects.get(0).setPosY(objects.get(0).getPosY() - 2);
 		}
 		else
 			objects.get(0).setPosY(objects.get(0).getPosY() + 2);
 		
 		for(int count = 1; count < objects.size(); count++){
-			objects.get(count).setPosX(objects.get(count).getPosX() - 2);
+			objects.get(count).setPosX(objects.get(count).getPosX() - 3);
 		}
 		for(int count = 0; count < objects.size(); count++){
 			canvas.setImage(objects.get(count).getImageIcon(), objects.get(count).getPosX(),

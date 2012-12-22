@@ -23,7 +23,7 @@ public class RandomMapManager {
 	}
 	public Wall createRandomWall(){
 		wallCounter++;
-		String s = ""+wallCounter;
+		String s = "Wall";
 		Wall w = new Wall (s, 750, randomYGenerator());
 		return w;
 	}

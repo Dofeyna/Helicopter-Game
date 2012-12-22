@@ -80,7 +80,7 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println("Mouse");
+		//System.out.println("Mouse");
 		log = mouseInputReturn(e);
 	}
 
