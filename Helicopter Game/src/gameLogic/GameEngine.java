@@ -1,7 +1,10 @@
+package gameLogic;
+
 import java.awt.Dimension;
 import java.util.ArrayList;
 
 import gameEntities.*;
+import userInterface.*;
 
 import javax.swing.JFrame;
 
