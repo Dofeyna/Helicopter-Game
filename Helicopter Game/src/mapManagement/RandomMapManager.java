@@ -1,4 +1,6 @@
-package gameEntities;
+package mapManagement;
+
+import gameEntities.Wall;
 
 import javax.swing.*;
 
@@ -21,16 +23,17 @@ public class RandomMapManager {
 	{
 		this.backgroundImage = backgroundImage;
 	}
-	public Wall createRandomWall(){
+	public Wall createRandomWall(String path){
 		wallCounter++;
 		String s = "Wall";
-		Wall w = new Wall (s, 750, randomYGenerator());
+		Wall w = new Wall (path, s, 750, randomYGenerator());
 		return w;
 	}
 	private int randomYGenerator(){
 		int randomInt = MINHEIGHT + (int)(Math.random()*MAXHEIGHT);
 		return randomInt;
 	}
-	
-
+	public Wall arrangeBoundryWalls (String path) {
+		return new Wall (path, "Wall", 770, 500 + (int) (Math.random()*60) );
+	}
 }

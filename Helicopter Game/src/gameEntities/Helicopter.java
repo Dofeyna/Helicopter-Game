@@ -11,9 +11,9 @@ public class Helicopter extends GameObject {
 	private AudioClip movementAudio;
 	private String feature;
 	
-	public Helicopter(String id, int posX, int posY){
+	public Helicopter(String path, String id, int posX, int posY){
 		super(id, posX, posY);
-		image = new ImageIcon("rsc/helicopter.GIF");
+		image = new ImageIcon(path);
 	}
 	
 	public ImageIcon getImageIcon()

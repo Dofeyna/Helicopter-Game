@@ -8,6 +8,10 @@ import userInterface.*;
 
 import javax.swing.JFrame;
 
+import mapManagement.RandomMapManager;
+
+import dataManagement.FileManager;
+
 
 public class GameEngine {
 
@@ -24,6 +28,7 @@ public class GameEngine {
 	GameCanvas canvas;
 	private double randomCaller;
 	private boolean gameLoop = true;
+	private String helicopterPath;
 	
 	public static void main (String [] args){
 		GameEngine engine = new GameEngine();
@@ -36,10 +41,12 @@ public class GameEngine {
 	}
 	public void initializition(){
 		if(init){
+			FileManager fm = new FileManager();
+			helicopterPath = fm.getHelicopterSkin(0);
 			collisionManager = new CollisionManager();
 			canvas = new GameCanvas();
 			randomMapManager = new RandomMapManager();
-			helicopter = new Helicopter("bir", HELICOPTERX, HELICOPTERY);
+			helicopter = new Helicopter(helicopterPath, "bir", HELICOPTERX, HELICOPTERY);
 			objects.add(helicopter);
 			canvas.addImage(objects.get(0).getImageIcon(), objects.get(0).getPosX(),objects.get(0).getPosY());
 			GameFrame = new JFrame("Helicopter Game"); 
@@ -66,10 +73,13 @@ public class GameEngine {
 		}
 	}
 	public void update(){
+		canvas.addRandomWall(randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getImage(), 
+				randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getPosX(), 
+				randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getPosY());
 		if(randomCaller < 1)
 			randomCaller += 0.003;
 		else{
-			objects.add(randomMapManager.createRandomWall());
+			objects.add(randomMapManager.createRandomWall("rsc/wall.PNG"));
 			randomCaller = 0 + (Math.random()*1);
 			canvas.addImage(objects.get(objects.size() - 1).getImageIcon(), 
 					objects.get(objects.size() - 1).getPosX(),objects.get(objects.size() - 1).getPosY());

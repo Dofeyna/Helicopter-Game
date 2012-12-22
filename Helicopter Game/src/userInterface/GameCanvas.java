@@ -15,9 +15,18 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
 	private ArrayList<Integer> posX = new ArrayList<Integer>();
 	private ArrayList<Integer> posY = new ArrayList<Integer>();
+	
+	private ArrayList<ImageIcon> boundryWallsImage = new ArrayList <ImageIcon>();
+	private ArrayList<Integer> boundryPosX = new ArrayList<Integer>();
+	private ArrayList<Integer> boundryPosY = new ArrayList<Integer>();
+	
 	private ImageIcon background = new ImageIcon ("rsc/Wall Pattern.JPG");
 	private int log;
+	private int boundryWallSize;
+	private int firstBoundryWallSize;
 	public GameCanvas() {
+		boundryWallSize = 0;
+		firstBoundryWallSize = 0;
 		setFocusable(true);
 		addKeyListener(this);
 		addMouseListener(this);
@@ -30,11 +39,21 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 		posX.add(x);
 		posY.add(y);
 	}
-	public int getLog(){
-		return log;
-	}
-	public void setLog(int i){
-		log = i;
+	public void addRandomWall(ImageIcon i, int x, int y){
+		firstBoundryWallSize++;
+		if( firstBoundryWallSize > 100){
+			boundryPosX.set(boundryWallSize, x);
+			boundryPosY.set(boundryWallSize, y);
+			boundryWallSize++;
+			if( boundryWallSize >= 100)
+				boundryWallSize = 0;
+		}
+		else if( firstBoundryWallSize <= 100){
+			boundryWallsImage.add(i);
+			boundryPosX.add(x);
+			boundryPosY.add(y);
+		}
+		setRandomWall();
 	}
 	public void setImage(ImageIcon i, int x, int y, int count){
 		objectsImage.set(count, i);
@@ -42,9 +61,24 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 		posY.add(count, y);
 		updateUI();
 	}
+	public int getLog(){
+		return log;
+	}
+	public void setLog(int i){
+		log = i;
+	}
+	public void setRandomWall(){
+		for(int count = 0; count < boundryWallSize; count++)
+			boundryPosX.set(count, boundryPosX.get(count) - 30);
+		updateUI();
+	}
 	public void paint(Graphics g){
 		for(int i = 0; i<objectsImage.size(); i++){
 			g.drawImage(objectsImage.get(i).getImage(), posX.get(i), posY.get(i), null);
+		}
+		for(int i = 0; i < boundryWallsImage.size(); i++){
+			g.drawImage(boundryWallsImage.get(i).getImage(), boundryPosX.get(i), 
+					boundryPosY.get(i), null);
 		}
 	}
 

@@ -8,9 +8,9 @@ public class Wall extends GameObject {
 	private ImageIcon image;
 	private AudioClip audio;
 
-	public Wall( String id, int posX, int posY){	
+	public Wall( String path, String id, int posX, int posY){
 		super(id, posX, posY);
-		image = new ImageIcon("rsc/wall.PNG");
+		image = new ImageIcon(path);
 	}
 		
 	public ImageIcon getImage()
