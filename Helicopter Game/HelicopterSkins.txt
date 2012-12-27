@@ -1,1 +1,5 @@
 rsc/helicopter.GIF
+rsc/witch1.GIF
+rsc/th_NyanCat.GIF
+rsc/balloon1.GIF
+

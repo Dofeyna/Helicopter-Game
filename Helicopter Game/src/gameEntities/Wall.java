@@ -33,21 +33,6 @@ public class Wall extends GameObject {
 		this.audio = audio;
 	}
 	
-	public void destroy()
-	{
-		
-	}
-	
-	public void playAudio()
-	{
-		
-	}
-
-	public void draw()
-	{
-		
-	}
-
 	public ImageIcon getImageIcon() {
 		return image;
 	}

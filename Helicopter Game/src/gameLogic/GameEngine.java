@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 
 import gameEntities.*;
-import userInterface.*;
-
 import javax.swing.JFrame;
 
 import mapManagement.RandomMapManager;
@@ -27,11 +25,13 @@ public class GameEngine {
 	Wall wall1;
 	ArrayList<GameObject> objects = new ArrayList<GameObject>();
 	final int ACCELERATION=5;
-	//GameCanvas canvas;
 	private double randomCaller;
 	private String helicopterPath;
+	private double score;
+	private int randomObject;
 	
 	private int objectsCount;
+	FileManager fm;
 	
 	public static void main (String [] args){
 		GameEngine engine = new GameEngine();
@@ -44,16 +44,9 @@ public class GameEngine {
 	}
 	public void initializition(){
 		if(init){
-			objectsCount = 2;
-			FileManager fm = new FileManager();
-			helicopterPath = fm.getHelicopterSkin(0);
-			collisionManager = new CollisionManager();
-			//canvas = new GameCanvas();
-			randomMapManager = new RandomMapManager();
-			helicopter = new Helicopter(helicopterPath, "bir", HELICOPTERX, HELICOPTERY);
-			objects.add(helicopter);
 			guiManager = new GUIManager();
-			guiManager.getCanvas().addImage(objects.get(0).getImageIcon(), objects.get(0).getPosX(),objects.get(0).getPosY());
+			score = 0;
+			objectsCount = 2;
                         
 			guiManager.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //closes the program when the window is closed
 			guiManager.setResizable(false); //don't allow the user to resize the window
@@ -61,26 +54,43 @@ public class GameEngine {
 			guiManager.setVisible(true);
 			guiManager.setLocationRelativeTo(null);
 			randomCaller = 0 + (Math.random()*1);
+			fm = new FileManager();
+			
+			collisionManager = new CollisionManager();
+			randomMapManager = new RandomMapManager();
+			
+			
 		}
 		init = false;
 	}
 	
 	public void play(){
 		long speed = System.currentTimeMillis();
+		int x = 0;
 		while(true){
 			System.out.print("");
 			while(guiManager.getGameLoop()){
-				if(speed < System.currentTimeMillis()-10){
-					update();
-					speed = System.currentTimeMillis();
+				if(x == 0){
+					helicopterPath = fm.getHelicopterSkin(guiManager.getSkin());
+					helicopter = new Helicopter(helicopterPath, "bir", HELICOPTERX, HELICOPTERY);
+					objects.add(helicopter);
+					guiManager.getCanvas().addImage(objects.get(0).getImageIcon(), objects.get(0).getPosX(),objects.get(0).getPosY());
+					x = 2;
 				}
-			if( collisionManager.checkCollision(objects) == "Wall"){
-					guiManager.setGameLoop(false);
+				if(speed < System.currentTimeMillis()-10){
+						update();
+						score += 0.1;
+						System.out.println((int)score);
+						speed = System.currentTimeMillis();
+					}
+				if( collisionManager.checkCollision(objects) == "Wall"){
+						guiManager.setGameLoop(false);
 				}
 			}
 		}
 	}
 	public void update(){
+		randomObject = (int) (Math.random()*2);
 		guiManager.getCanvas().addRandomWall(randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getImage(), 
 				randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getPosX(), 
 				randomMapManager.arrangeBoundryWalls("rsc/wall.PNG").getPosY());
@@ -91,7 +101,10 @@ public class GameEngine {
 			randomCaller += 0.003;
 		else{
 			if(objects.size() <= MAXIMUM_OBJECTS){
-				objects.add(randomMapManager.createRandomWall("rsc/wall.PNG"));
+				if(randomObject == 0)
+					objects.add(randomMapManager.createRandomWall(randomObject, "rsc/wall.PNG"));
+				else
+					objects.add(randomMapManager.createRandomWall(randomObject, "rsc/diamond.GIF"));
 				guiManager.getCanvas().addImage(objects.get(objects.size() - 1).getImageIcon(), 
 						objects.get(objects.size() - 1).getPosX(),objects.get(objects.size() - 1).getPosY());
 				objectsCount++;
@@ -99,7 +112,10 @@ public class GameEngine {
 			else{
 				if(objectsCount > MAXIMUM_OBJECTS)
 					objectsCount = 2;
-				objects.set(objectsCount, randomMapManager.createRandomWall("rsc/wall.PNG"));
+				if(randomObject == 0)
+					objects.set(objectsCount, randomMapManager.createRandomWall(randomObject, "rsc/wall.PNG"));
+				else
+					objects.set(objectsCount, randomMapManager.createRandomWall(randomObject, "rsc/diamond.GIF"));
 				guiManager.getCanvas().setImage(objects.get(objectsCount).getImageIcon(), 
 						objects.get(objectsCount).getPosX(),objects.get(objectsCount).getPosY(), objectsCount);
 				objectsCount++;

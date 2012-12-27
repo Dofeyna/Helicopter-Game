@@ -21,10 +21,10 @@ public class FileManager {
 		// Get the object of DataInputStream
 		DataInputStream in = new DataInputStream(fstream);
 		BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		String strLine;
+		String strLine ;
 		//Read File Line By Line
-			for(int i = 0; i < skin; skin++){
-			strLine = br.readLine();
+			for(int i = 0; i < skin; i++){
+				strLine = br.readLine();
 			}
 		return strLine = br.readLine();
 		}catch (Exception e){//Catch exception if any

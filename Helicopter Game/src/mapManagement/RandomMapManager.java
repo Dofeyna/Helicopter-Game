@@ -1,19 +1,17 @@
 package mapManagement;
 
-import gameEntities.Wall;
+import gameEntities.*;
 
 import javax.swing.*;
 
 public class RandomMapManager {
 	
 	private ImageIcon backgroundImage;
-	private int wallCounter;
 	private final int MAXHEIGHT = 500;
 	private final int MINHEIGHT = 140;
 	public RandomMapManager(){
-		wallCounter = 0;
-	}
 	
+	}
 	public ImageIcon getBackgroundImage()
 	{
 		return backgroundImage;
@@ -23,11 +21,17 @@ public class RandomMapManager {
 	{
 		this.backgroundImage = backgroundImage;
 	}
-	public Wall createRandomWall(String path){
-		wallCounter++;
-		String s = "Wall";
-		Wall w = new Wall (path, s, 750, randomYGenerator());
-		return w;
+	public GameObject createRandomWall(int i, String path){
+		if(i == 0){
+			String s = "Wall";
+			Wall w = new Wall (path, s, 750, randomYGenerator());
+			return w;
+		}
+		else{
+			String s = "Diamond";
+			Diamond d = new Diamond (path, s, 750, randomYGenerator());
+			return d;
+		}
 	}
 	private int randomYGenerator(){
 		int randomInt = MINHEIGHT + (int)(Math.random()*MAXHEIGHT);

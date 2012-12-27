@@ -1,24 +1,35 @@
 package gameEntities;
 
 import java.applet.AudioClip;
-import java.awt.image.BufferedImage;
-
 import javax.swing.ImageIcon;
 
 public class Diamond extends GameObject {
 
-	BufferedImage image;
+	
+	private ImageIcon image;
+	private AudioClip audio;
 
-	AudioClip audio;
-	
-	public Diamond(){	
-	
+	public Diamond( String path, String id, int posX, int posY){
+		super(id, posX, posY);
+		image = new ImageIcon(path);
 	}
-
-	@Override
+	public ImageIcon getImage()
+	{
+		return image;
+	}
+	public AudioClip getAudio()
+	{
+		return audio;
+	}
+	public void setImage( ImageIcon image)
+	{
+		this.image = image;
+	}
+	public void setAudio(AudioClip audio)
+	{
+		this.audio = audio;
+	}
 	public ImageIcon getImageIcon() {
-		// TODO Auto-generated method stub
-		return null;
+		return image;
 	}
-	
 }

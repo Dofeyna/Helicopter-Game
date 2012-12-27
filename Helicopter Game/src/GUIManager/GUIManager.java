@@ -8,6 +8,7 @@ package GUIManager;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
@@ -25,6 +26,7 @@ public class GUIManager extends JFrame {
     private JPanel menuList []= new JPanel[7];
     private GameCanvas canvas;
     private boolean gameLoop;
+    private int skin ;
     /**
      * Creates new form GUIManager
      */
@@ -36,7 +38,7 @@ public class GUIManager extends JFrame {
        menuList[3] = achievementsMenu;
        menuList[4] = creditsMenu;
        menuList[5] = settingsMenu;
-       
+       skin = 0;
        menuList[6] = canvas;
        
        for(int i= 1;i<7;i++)
@@ -44,6 +46,10 @@ public class GUIManager extends JFrame {
            menuList[i].setVisible(false);
        }
        backButton.setVisible(false);
+    }
+    public int getSkin()
+    {
+    	return skin;
     }
     public GameCanvas getCanvas()
     {
@@ -108,6 +114,19 @@ public class GUIManager extends JFrame {
         controlLabel = new javax.swing.JLabel();
         audioLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        buyBalloon = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        buyWitch = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        buyCat = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -119,6 +138,7 @@ public class GUIManager extends JFrame {
         mainMenu.setLayout(null);
         canvas.setSize(new Dimension(780,560));
         canvas.setMaximumSize(new java.awt.Dimension(800, 640));
+        
         shopButton.setText("Shop");
         shopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +146,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(shopButton);
-        shopButton.setBounds(330, 180, 60, 20);
+        shopButton.setBounds(300, 180, 130, 20);
 
         helpButton.setText("Help");
         helpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +155,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(helpButton);
-        helpButton.setBounds(330, 270, 60, 30);
+        helpButton.setBounds(300, 270, 130, 20);
 
         creditsButton.setText("Credits");
         creditsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +164,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(creditsButton);
-        creditsButton.setBounds(320, 310, 67, 23);
+        creditsButton.setBounds(300, 300, 130, 23);
 
         achievementsButton.setText("Achievements");
         achievementsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +173,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(achievementsButton);
-        achievementsButton.setBounds(300, 240, 110, 23);
+        achievementsButton.setBounds(300, 240, 130, 23);
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +182,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(exitButton);
-        exitButton.setBounds(330, 340, 51, 23);
+        exitButton.setBounds(300, 330, 130, 23);
 
         settingsButton.setText("Settings");
         settingsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -171,7 +191,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(settingsButton);
-        settingsButton.setBounds(320, 210, 71, 23);
+        settingsButton.setBounds(300, 210, 130, 23);
 
         playButtton.setText("Play");
         playButtton.setName("playButton"); // NOI18N
@@ -181,7 +201,7 @@ public class GUIManager extends JFrame {
             }
         });
         mainMenu.add(playButtton);
-        playButtton.setBounds(330, 150, 53, 23);
+        playButtton.setBounds(300, 150, 130, 23);
 
         highscore.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         highscore.setText("Highscore:2222");
@@ -202,87 +222,114 @@ public class GUIManager extends JFrame {
 
         shopMenu.setLayout(null);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
-        shopMenu.add(jScrollPane1);
-        jScrollPane1.setBounds(43, 232, 270, 149);
-
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
-
-        shopMenu.add(jScrollPane2);
-        jScrollPane2.setBounds(43, 37, 270, 149);
-
-        jLabel1.setText("icon");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
-        );
-
-        shopMenu.add(jPanel2);
-        jPanel2.setBounds(330, 40, 290, 340);
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("SHOP");
         shopMenu.add(jLabel2);
         jLabel2.setBounds(300, 10, 50, 22);
 
-        helpMenu.setPreferredSize(new java.awt.Dimension(776, 429));
+       
+		jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(null);
+        
+        buyBalloon.setText("Buy");
+        jPanel1.add(buyBalloon);
+        buyBalloon.setBounds(20, 100, 73, 23);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("adasgfafdyasfday\nasfasgsyufda\nasfahsgfasf\nafsgasfa\nasjfgasfyasuyfgasfas\nfasfaguasfasg\nagfasf\nas\nga\nsgh\nsh\ns\nhdsfh\n");
-        jScrollPane3.setViewportView(jTextArea2);
+        jLabel7.setText("Balloon Skin");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(32, 2, 60, 14);
+
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("rsc/balloon1.GIF")); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(30, 30, 60, 60);
+
+        shopMenu.add(jPanel1);
+        jPanel1.setBounds(350, 70, 110, 130);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(null);
+
+        buyWitch.setText("Buy");
+        buyWitch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyWitchActionPerformed(evt);
+            }
+        });
+        buyBalloon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyBalloonActionPerformed(evt);
+            }
+        });
+        buyCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyCatActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buyWitch);
+        buyWitch.setBounds(20, 100, 73, 23);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("rsc/witch1.GIF")); // NOI18N
+        jPanel2.add(jLabel8);
+        jLabel8.setBounds(30, 20, 60, 80);
+
+        jLabel9.setText("Witch Skin");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(32, 2, 49, 14);
+
+        shopMenu.add(jPanel2);
+        jPanel2.setBounds(60, 70, 110, 130);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(null);
+
+        buyCat.setText("Buy");
+        jPanel4.add(buyCat);
+        buyCat.setBounds(20, 100, 73, 23);
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("rsc/th_NyanCat.GIF")); // NOI18N
+        jPanel4.add(jLabel12);
+        jLabel12.setBounds(30, 20, 50, 80);
+
+        jLabel13.setText("Nyan Cat Skin");
+        jPanel4.add(jLabel13);
+        jLabel13.setBounds(20, 0, 80, 14);
+
+
+        shopMenu.add(jPanel4);
+        jPanel4.setBounds(200, 70, 110, 130);
+
+        helpMenu.setPreferredSize(new java.awt.Dimension(776, 429));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("HELP");
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("1. Gameplay\n\tOriginally, the player uses a mouse to play the game. The player must press the left button of the mouse to fly \nthe helicopter. As the player keeps pressing the button, the helicopter ascends and as the player stop pushing it, the \nhelicopter descends. However, the game has an option to choose the button which will be used. Therefore, the player can \nspecify the button as he wants rather than the mouse. Moreover, the player needs the keyboard to pause the game by pressing \nto the \"ESC\" button. After pressing ESC and pause the game, the player change settings, exit game or continue to play.\n\n2. Obstacles\nThere will be different kinds of obstacles in the game and the player tries not to crash to them. Generally, the obstacles\n will be like walls which are located in different places on the helicopter's road. The helicopter must pass either under \nthe wall or over the wall. Therefore, the height of the walls and the place of the walls are important for the player. There\n will be other obstacles which are like a ring. The helicopter must pass inside of that types of obstacles and again the\n area of the obstacles is important for the player because small ones will be harder to pass through.\n\n3. Power-ups and Diamonds\n\tPower-ups are designed to provide different features for the helicopter and diamonds are designed to collect points. \nThey will be placed randomly on the helicopter's road and the player tries to collect them as many as possible. There will \nbe 4 types of power ups which all have different features. Here are the types of power-ups:\n\nSpeed: It provides speed to the helicopter. Yet, it will not crash any obstacles while player is under the impact of\n\tspeed power-up.\n\nRocket: It enables the helicopter to destroy the obstacles.\n\nGhost: It enables the helicopter to pass through the obstacles without crashing them like a ghost.\n\nMagnet: It enables the helicopter to collect the diamonds more easily. It magnetizes diamonds toward the \nhelicopter, so the helicopter can collect them without passing over the diamonds.\n\nDiamonds enable the helicopter to collect more points in addition to the points it collects from the distance taken.\n\n");
+        jScrollPane3.setViewportView(jTextArea2);
 
         javax.swing.GroupLayout helpMenuLayout = new javax.swing.GroupLayout(helpMenu);
         helpMenu.setLayout(helpMenuLayout);
         helpMenuLayout.setHorizontalGroup(
             helpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helpMenuLayout.createSequentialGroup()
-                .addGroup(helpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(helpMenuLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(helpMenuLayout.createSequentialGroup()
-                        .addGap(320, 320, 320)
-                        .addComponent(jLabel4)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(362, 362, 362))
+            .addGroup(helpMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         helpMenuLayout.setVerticalGroup(
             helpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(helpMenuLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+                .addContainerGap())
         );
-
         jList3.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "achievement 1", "achievement 11", "achievement 111", "achievement 1111", "achievement 11111", "achievement 111111", "achievement 11111", "achievement 1111", "achievement 111", "achievement 11", "achievement 1" };
             public int getSize() { return strings.length; }
@@ -365,6 +412,11 @@ public class GUIManager extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
+
+			private void jCheckBox1ActionPerformed(ActionEvent evt) {
+				// TODO Auto-generated method stub
+				
+			}
         });
 
         jLabel3.setText("Audio Level");
@@ -655,9 +707,15 @@ public class GUIManager extends JFrame {
         }
     }//GEN-LAST:event_playButttonActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void buyWitchActionPerformed(java.awt.event.ActionEvent evt) {
+        skin = 1;
+    }
+    private void buyCatActionPerformed(java.awt.event.ActionEvent evt) {
+        skin = 2;
+    }
+    private void buyBalloonActionPerformed(java.awt.event.ActionEvent evt) {
+        skin = 3;
+    }
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -685,10 +743,17 @@ public class GUIManager extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -708,6 +773,9 @@ public class GUIManager extends JFrame {
     private javax.swing.JPanel settingsMenu;
     private javax.swing.JButton shopButton;
     private javax.swing.JPanel shopMenu;
+    private javax.swing.JButton buyBalloon;
+    private javax.swing.JButton buyCat;
+    private javax.swing.JButton buyWitch;
     // End of variables declaration//GEN-END:variables
 
 }

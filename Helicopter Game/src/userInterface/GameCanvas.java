@@ -98,14 +98,16 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		log = i;
 	}
 	public void setRandomWall(){
-		for(int count = 0; count < boundryWallSize; count++)
-			boundryPosX.set(count, boundryPosX.get(count) - 30);
-		updateUI();
+		for(int count = 0; count < boundryWallSize; count++){
+			boundryPosX.set(count, boundryPosX.get(count) - 20);
+			updateUI();
+		}
 	}
 	public void setRandomUpperWall(){
-		for(int count = 0; count < boundryUpperWallSize; count++)
-			boundryUpperPosX.set(count, boundryUpperPosX.get(count) - 30);
-		updateUI();
+		for(int count = 0; count < boundryUpperWallSize; count++){
+			boundryUpperPosX.set(count, boundryUpperPosX.get(count) - 20);
+			updateUI();
+			}
 	}
 	public void paint(Graphics g){
 		for(int i = 0; i<objectsImage.size(); i++){
