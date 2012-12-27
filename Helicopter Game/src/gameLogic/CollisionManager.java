@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import gameEntities.GameObject;
 public class CollisionManager {
 	
-	int xposition;
-	int yposition;
+	private int xposition;
+	private int yposition;
+	private int deletionIndex;
 	public CollisionManager() {
 		xposition = 150;
 	}
@@ -18,8 +19,10 @@ public class CollisionManager {
 						count2 <= objects.get(count).getPosX() + 35){
 					for( int count3 = yposition; count3 <= yposition + 48; count3++){
 						if(count3 >= objects.get(count).getPosY() && 
-						count3 <= objects.get(count).getPosY() + 65)
+						count3 <= objects.get(count).getPosY() + 65){
+							this.deletionIndex = count;
 							return objects.get(count).getId();
+						}
 					}
 				}
 			}
@@ -29,5 +32,8 @@ public class CollisionManager {
 			return "Wall";
 		}
 		return null;
+	}
+	public int getDeletionIndex(){
+		return deletionIndex;
 	}
 }

@@ -47,6 +47,16 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		posX.add(0);
 		posY.add(0);
 	}
+	
+	public ArrayList<ImageIcon> getObjectsImage(){
+		return objectsImage;
+	}
+	public ArrayList<Integer> getPosX(){
+		return posX;
+	}
+	public ArrayList<Integer> getPosY(){
+		return posY;
+	}
 	public void addImage(ImageIcon i, int x, int y){
 		objectsImage.add(i);
 		posX.add(x);

@@ -84,7 +84,14 @@ public class GameEngine {
 						speed = System.currentTimeMillis();
 					}
 				if( collisionManager.checkCollision(objects) == "Wall"){
-						guiManager.setGameLoop(false);
+					guiManager.setGameLoop(false);
+				}
+				else if(collisionManager.checkCollision(objects) == "Diamond"){
+					objects.remove(collisionManager.getDeletionIndex());
+					guiManager.getCanvas().getObjectsImage().remove(collisionManager.getDeletionIndex());
+					guiManager.getCanvas().getPosX().remove(collisionManager.getDeletionIndex());
+					guiManager.getCanvas().getPosY().remove(collisionManager.getDeletionIndex());
+					score += 100.1;
 				}
 			}
 		}
@@ -98,7 +105,7 @@ public class GameEngine {
 				randomMapManager.arrangeUpperBoundryWalls("rsc/wall.PNG").getPosX(), 
 				randomMapManager.arrangeUpperBoundryWalls("rsc/wall.PNG").getPosY());
 		if(randomCaller < 1)
-			randomCaller += 0.003;
+			randomCaller += 0.01;
 		else{
 			if(objects.size() <= MAXIMUM_OBJECTS){
 				if(randomObject == 0)
