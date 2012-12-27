@@ -24,6 +24,10 @@ public class CollisionManager {
 				}
 			}
 		}
+		if(yposition <= 73 || yposition >= 465){
+			System.out.println("Üst alt");
+			return "Wall";
+		}
 		return null;
 	}
 }

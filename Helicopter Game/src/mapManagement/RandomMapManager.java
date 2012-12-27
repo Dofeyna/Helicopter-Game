@@ -36,4 +36,7 @@ public class RandomMapManager {
 	public Wall arrangeBoundryWalls (String path) {
 		return new Wall (path, "Wall", 770, 500 + (int) (Math.random()*60) );
 	}
+	public Wall arrangeUpperBoundryWalls (String path) {
+		return new Wall (path, "Wall", 770, (-50 + (int) (Math.random()*60)) );
+	}
 }

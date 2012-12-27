@@ -1,17 +1,19 @@
 package userInterface;
 
+import gameLogic.GameEngine;
+
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 
-public class GameCanvas extends JPanel implements KeyListener, MouseListener {
+public class GameCanvas extends javax.swing.JPanel implements KeyListener, MouseListener {
 	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
 	private ArrayList<Integer> posX = new ArrayList<Integer>();
 	private ArrayList<Integer> posY = new ArrayList<Integer>();
@@ -20,16 +22,27 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 	private ArrayList<Integer> boundryPosX = new ArrayList<Integer>();
 	private ArrayList<Integer> boundryPosY = new ArrayList<Integer>();
 	
+	private ArrayList<ImageIcon> boundryUpperWallsImage = new ArrayList <ImageIcon>();
+	private ArrayList<Integer> boundryUpperPosX = new ArrayList<Integer>();
+	private ArrayList<Integer> boundryUpperPosY = new ArrayList<Integer>();
+	
+	
 	private ImageIcon background = new ImageIcon ("rsc/Wall Pattern.JPG");
 	private int log;
 	private int boundryWallSize;
+	private int boundryUpperWallSize;
+	private int firstUpperBoundryWallSize;
 	private int firstBoundryWallSize;
+	
 	public GameCanvas() {
 		boundryWallSize = 0;
+		boundryUpperWallSize = 0;
+		firstUpperBoundryWallSize = 0;
 		firstBoundryWallSize = 0;
 		setFocusable(true);
 		addKeyListener(this);
 		addMouseListener(this);
+		this.setDoubleBuffered(true);
 		objectsImage.add(background);
 		posX.add(0);
 		posY.add(0);
@@ -55,6 +68,23 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 		}
 		setRandomWall();
 	}
+	
+	public void addRandomUpperWall(ImageIcon i, int x, int y){
+		firstUpperBoundryWallSize++;
+		if( firstUpperBoundryWallSize > 100){
+			boundryUpperPosX.set(boundryUpperWallSize, x);
+			boundryUpperPosY.set(boundryUpperWallSize, y);
+			boundryUpperWallSize++;
+			if( boundryUpperWallSize >= 100)
+				boundryUpperWallSize = 0;
+		}
+		else if( firstUpperBoundryWallSize <= 100){
+			boundryUpperWallsImage.add(i);
+			boundryUpperPosX.add(x);
+			boundryUpperPosY.add(y);
+		}
+		setRandomUpperWall();
+	}
 	public void setImage(ImageIcon i, int x, int y, int count){
 		objectsImage.set(count, i);
 		posX.set(count, x);
@@ -72,6 +102,11 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 			boundryPosX.set(count, boundryPosX.get(count) - 30);
 		updateUI();
 	}
+	public void setRandomUpperWall(){
+		for(int count = 0; count < boundryUpperWallSize; count++)
+			boundryUpperPosX.set(count, boundryUpperPosX.get(count) - 30);
+		updateUI();
+	}
 	public void paint(Graphics g){
 		for(int i = 0; i<objectsImage.size(); i++){
 			g.drawImage(objectsImage.get(i).getImage(), posX.get(i), posY.get(i), null);
@@ -80,6 +115,11 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 			g.drawImage(boundryWallsImage.get(i).getImage(), boundryPosX.get(i), 
 					boundryPosY.get(i), null);
 		}
+		for(int i = 0; i < boundryUpperWallsImage.size(); i++){
+			g.drawImage(boundryUpperWallsImage.get(i).getImage(), boundryUpperPosX.get(i), 
+					boundryUpperPosY.get(i), null);
+		}
+		
 	}
 
 	@Override
@@ -114,7 +154,7 @@ public class GameCanvas extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		//System.out.println("Mouse");
+		System.out.println("Mouse");
 		log = mouseInputReturn(e);
 	}
 
