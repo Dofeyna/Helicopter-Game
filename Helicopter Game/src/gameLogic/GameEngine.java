@@ -58,8 +58,6 @@ public class GameEngine {
 			
 			collisionManager = new CollisionManager();
 			randomMapManager = new RandomMapManager();
-			
-			
 		}
 		init = false;
 	}
