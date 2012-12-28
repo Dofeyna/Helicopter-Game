@@ -1,7 +1,5 @@
 package userInterface;
 
-import gameLogic.GameEngine;
-
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -16,26 +14,33 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
 	private ArrayList<Integer> posX = new ArrayList<Integer>();
 	private ArrayList<Integer> posY = new ArrayList<Integer>();
+	private String backgroundPath = "";
 	
 	
-	
-	private ImageIcon background = new ImageIcon ("rsc/Wall Pattern.JPG");
+	private ImageIcon background;
 	private int log;
 
 	private RandomMapManager randomMapManager;
 	
 	public GameCanvas() {
 		randomMapManager = new RandomMapManager();
-	
-		setFocusable(true);
 		addKeyListener(this);
 		addMouseListener(this);
 		this.setDoubleBuffered(true);
+		
+	}
+	public void setObjectsImage()
+	{
+		background = new ImageIcon (backgroundPath);
+		this.setFocusable(true);
 		objectsImage.add(background);
 		posX.add(0);
 		posY.add(0);
 	}
-	
+	public void setBackgroundPath(String str)
+	{
+		backgroundPath = str;
+	}
 	public ArrayList<ImageIcon> getObjectsImage(){
 		return objectsImage;
 	}

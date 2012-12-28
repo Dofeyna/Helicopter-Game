@@ -49,6 +49,10 @@ public class GUIManager extends JFrame {
        }
        backButton.setVisible(false);
     }
+    public int getBackGround()
+    {
+    	return shopMenu.getBackGround();
+    }
     public int getSkin()
     {
     	return skin;

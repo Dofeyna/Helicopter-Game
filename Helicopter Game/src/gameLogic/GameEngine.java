@@ -5,11 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import gameEntities.*;
 import javax.swing.JFrame;
-
 import userInterface.GUIManager;
-
 import mapManagement.RandomMapManager;
-
 import dataManagement.FileManager;
 
 public class GameEngine {
@@ -33,6 +30,7 @@ public class GameEngine {
 	private int totalScore = 0;
 	private int objectsCount;
 	private FileManager fm;
+	private String backgroundPath = "";
 	
 	public static void main (String [] args) throws FileNotFoundException{
 		GameEngine engine = new GameEngine();
@@ -92,7 +90,9 @@ public class GameEngine {
 			
 			while(guiManager.getGameLoop()){
 				if(skinSelect == 0){
-					
+					backgroundPath = fm.getBackground(guiManager.getBackGround());
+					guiManager.getCanvas().setBackgroundPath(backgroundPath);
+					guiManager.getCanvas().setObjectsImage();
 					helicopterPath = fm.getHelicopterSkin(guiManager.getSkin());
 					helicopter = new Helicopter(helicopterPath, "bir", HELICOPTERX, HELICOPTERY);
 					
