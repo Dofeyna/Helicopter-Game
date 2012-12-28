@@ -7,7 +7,6 @@ import gameEntities.*;
 import javax.swing.*;
 /**
  *  This class generates random wall objects and arranges positions of them.
- * 
  */
 public class RandomMapManager {
 	
@@ -41,7 +40,6 @@ public class RandomMapManager {
 		for (int i=0, j=720 ; i<numberOfWalls ; i++, j = j-WALLWIDTH){
 			wallsDown.add(generateBottomWall("rsc/wall.PNG"));
 			wallsDown.get(i).setPosX(wallsDown.get(i).getPosX()- j) ;
-			
 			wallsDownFixed.add(new Wall("rsc/wall.PNG", "Wall", WINDOWWIDTH-j, 500));
 		}
 		

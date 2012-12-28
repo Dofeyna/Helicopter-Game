@@ -9,6 +9,12 @@ import userInterface.GUIManager;
 import mapManagement.RandomMapManager;
 import dataManagement.FileManager;
 
+/**
+ * The gameEngine class is the facade class of the program which handles every 
+ * class by creating objects of them. This class uses the facade pattern and 
+ * it is highly object oriented.
+ *
+ */
 public class GameEngine {
 
 	public final int HELICOPTERX = 150;
@@ -36,12 +42,20 @@ public class GameEngine {
 		GameEngine engine = new GameEngine();
 	}
 
+	/**
+	 * @throws FileNotFoundException
+	 * constructor of the gameEngine class
+	 */
 	public GameEngine() throws FileNotFoundException {
-		initializition();
+		initializition();	
 		play();
-		
 	}
-	public void initializition(){
+	/**
+	 * Initializition method of the gameEngine class.
+	 * It takes all the settings from fileManager and initalizes
+	 * all the classes with this method
+	 */
+	private void initializition(){
 		if(init){
 			guiManager = new GUIManager();
 			score = 0;
@@ -60,7 +74,12 @@ public class GameEngine {
 		}
 		init = false;
 	}
-	public void init() throws FileNotFoundException
+	/**
+	 * @throws FileNotFoundException
+	 * This method is needed for the second time playing because initializion method creates the objects
+	 * yet this method is needed to re-initializiton
+	 */
+	private void init() throws FileNotFoundException
 	{
 		objects.clear();
 		guiManager.setCanvas();
@@ -81,7 +100,12 @@ public class GameEngine {
 		this.play();
 	}
 	
-	public void play() throws FileNotFoundException{
+	/**
+	 * @throws FileNotFoundException
+	 * This is the main game loop which would be called after clicking the play button
+	 * at the menu.
+	 */
+	private void play() throws FileNotFoundException{
 		long speed = System.currentTimeMillis();
 		long boundrySpeed = System.currentTimeMillis();
 		int skinSelect = 0;
@@ -135,7 +159,11 @@ public class GameEngine {
 			}
 		}
 	}
-	public void update(){
+	/**
+	 * This is the update method which is called at the play method's loop that moves every
+	 * object in the game.
+	 */
+	private void update(){
 		randomObject = (int) (Math.random()*2);
 		if(randomCaller < 1)
 			randomCaller += 0.01;

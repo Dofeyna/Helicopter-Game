@@ -14,9 +14,10 @@ import userInterface.Menu;
 
 public class ShopMenu extends Menu{
 
-    private int background;
+    private int background ;
     public ShopMenu() {
     	initComponents();
+    	background = 1;
     }
     @Override
     public void initComponents() {
@@ -164,7 +165,7 @@ public class ShopMenu extends Menu{
     private int skin;
     // End of variables declaration//GEN-END:variables
     private void buyBackActionPerformed(java.awt.event.ActionEvent evt) {
-    	background = 1;
+    	background = 2;
     }
     private void buyWitchActionPerformed(java.awt.event.ActionEvent evt) {
     	skin = 1;

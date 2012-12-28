@@ -14,7 +14,7 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
 	private ArrayList<Integer> posX = new ArrayList<Integer>();
 	private ArrayList<Integer> posY = new ArrayList<Integer>();
-	private String backgroundPath = "";
+	private String backgroundPath = "rsc/wall.jpg";
 	
 	
 	private ImageIcon background;
