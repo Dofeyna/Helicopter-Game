@@ -13,26 +13,21 @@ public class Wall extends GameObject {
 		image = new ImageIcon(path);
 	}
 		
-	public ImageIcon getImage()
-	{
+	public ImageIcon getImage(){
 		return image;
 	}
 	
-	public AudioClip getAudio()
-	{
+	public AudioClip getAudio(){
 		return audio;
 	}
 	
-	public void setImage( ImageIcon image)
-	{
+	public void setImage( ImageIcon image){
 		this.image = image;
 	}
 	
-	public void setAudio(AudioClip audio)
-	{
+	public void setAudio(AudioClip audio){
 		this.audio = audio;
 	}
-	
 	public ImageIcon getImageIcon() {
 		return image;
 	}
