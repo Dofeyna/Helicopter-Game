@@ -1,3 +1,6 @@
+/**
+ * This class initiates and draws walls, diamonds and backgrounds.
+ */
 package userInterface;
 
 import java.awt.Graphics;
@@ -14,7 +17,7 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 	private ArrayList<ImageIcon> objectsImage = new ArrayList <ImageIcon>();
 	private ArrayList<Integer> posX = new ArrayList<Integer>();
 	private ArrayList<Integer> posY = new ArrayList<Integer>();
-	private String backgroundPath = "rsc/wall.jpg";
+	private String backgroundPath = "";
 	
 	
 	private ImageIcon background;
@@ -29,6 +32,9 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		this.setDoubleBuffered(true);
 		
 	}
+	/**
+	 * This method is used to put given background image to object arraylist
+	 */
 	public void setObjectsImage()
 	{
 		background = new ImageIcon (backgroundPath);
@@ -37,6 +43,10 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		posX.add(0);
 		posY.add(0);
 	}
+	/**
+	 * This method changes background image's path
+	 * @param str new backgrounds path
+	 */
 	public void setBackgroundPath(String str)
 	{
 		backgroundPath = str;
@@ -55,7 +65,10 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		posX.add(x);
 		posY.add(y);
 	}
-	
+	/**
+	 * This method is used to get RandomMapManager object
+	 * @return desired mapManager object
+	 */
 	public RandomMapManager getRandomMapManager(){
 		return randomMapManager ;
 	}
@@ -72,7 +85,9 @@ public class GameCanvas extends javax.swing.JPanel implements KeyListener, Mouse
 		log = i;
 	}
 
-	
+	/**
+	 * This method draws walls which have been changed
+	 */
 	public void updateCanvasWalls (){
 		randomMapManager.updateWalls ("rsc/wall.PNG") ;
 		updateUI() ;

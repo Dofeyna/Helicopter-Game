@@ -1,3 +1,6 @@
+/**
+ * This class modifies and reads required text files content. 
+ */
 package dataManagement;
 
 import java.io.BufferedReader;
@@ -22,6 +25,11 @@ public class FileManager {
 	private String strLine2;
 	public FileManager() {
 	}
+	/**
+	 * This method read from file and gets chosen background
+	 * @param bg chosen background's id
+	 * @return chosen backgrounds path
+	 */
 	public String getBackground(int bg)
 	{
 		try{
@@ -40,6 +48,11 @@ public class FileManager {
 				return "Error: " + e.getMessage();
 			}
 	}
+	/**
+	 * This method read from file and gets highscore
+	 * 
+	 * @return higscore from file
+	 */
 	public String getHighScore()
 	{
 		try{
@@ -58,6 +71,11 @@ public class FileManager {
 				return "Error: " + e.getMessage();
 			}
 	}
+	/**
+	 * This method changes total score in the file
+	 * @param s new total score
+	 * 
+	 */
 	public void setTotalScore(int s) throws FileNotFoundException
 	{
 		try{
@@ -86,6 +104,11 @@ public class FileManager {
 			
 			}
 	}
+	/**
+	 * This method changes highscore in the file
+	 * @param s new highscore
+	 * 
+	 */
 	public void setHighScore(String s) throws FileNotFoundException
 	{
 		try{
@@ -112,7 +135,11 @@ public class FileManager {
 			
 			}
 	}
-
+	/**
+	 * This method reads the file and returns the total score
+	 * @return total score 
+	 * 
+	 */
 	public String getTotalScore()
 	{
 		try{
@@ -130,6 +157,11 @@ public class FileManager {
 				return "Error: " + e.getMessage();
 			}
 	}
+	/**
+	 * This method reads the file and gets the chosen skins path
+	 * @param skin chosen skins id
+	 * @return chosen skins id
+	 */
 	public String getHelicopterSkin(int skin) {
 		try{
 		// Open the file that is the first 

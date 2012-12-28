@@ -1,7 +1,5 @@
 /**
  * Thanks to this class users can change helicopter's skin and game's background.
- * 
- *
  */
 package userInterface;
 
@@ -14,7 +12,8 @@ import userInterface.Menu;
 
 public class ShopMenu extends Menu{
 
-    private int background ;
+    private int background;
+    private int skin;
     public ShopMenu() {
     	initComponents();
     	background = 1;
@@ -148,22 +147,22 @@ public class ShopMenu extends Menu{
     }
     /**
      * this method is used to get new skin's id which will be used to change helicopter's skin.
-     * @return skin chosen skin's id
+     * @return chosen skin's id
      */
     public int getSkin()
     {
     	return skin;
     }
     /**
-     * this method is used to get new skin's id which will be used to change helicopter's skin.
-     * @return skin chosen skin's id
+     * this method is used to get new background's id which will be used to change game's background.
+     * @return chosen background's id
      */
     public int getBackGround()
     {
     	return background;
     }
-    private int skin;
-    // End of variables declaration//GEN-END:variables
+
+   
     private void buyBackActionPerformed(java.awt.event.ActionEvent evt) {
     	background = 2;
     }

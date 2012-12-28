@@ -135,6 +135,8 @@ public class GameEngine {
 					boundrySpeed = System.currentTimeMillis() ;
 				}
 				if( collisionManager.checkCollision(objects) == "Wall"){
+					speed = System.currentTimeMillis() ;
+					while(speed > System.currentTimeMillis()-1000){	}
 					guiManager.setGameLoop(false);
 					highScoreInt = Integer.parseInt( highScore );
 					totalScore = Integer.parseInt(fm.getTotalScore());
